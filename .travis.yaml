@@ -1,0 +1,16 @@
+os: linux
+dist: xenial
+
+services:
+  - docker
+env:
+  global:
+    - SHA=$(git rev-parse --short HEAD)
+before_install:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+deploy:
+  provider: script
+  script: sh deploy.sh
+  on:
+    branch: master
