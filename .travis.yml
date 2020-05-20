@@ -12,7 +12,7 @@ before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 script:
-  - exit 0 || true
+  - docker build -t $DOCKER_USERNAME/foo:$VERSION-$SHA .
 
 deploy:
   provider: script
