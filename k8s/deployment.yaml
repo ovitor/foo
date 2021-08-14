@@ -1,0 +1,24 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: foo
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: foo
+
+  templates:
+    metadata:
+      labels:
+        app: foo
+    spec:
+      containers:
+        - name: app
+          image: registry.gitlab.com/ifce-quixada/foo/foo:latest
+          ports:
+            - containerPort: 80
